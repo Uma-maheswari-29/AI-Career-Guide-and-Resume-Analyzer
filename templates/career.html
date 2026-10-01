@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <div class="brand">AI Career Dashboard</div>
+            <nav>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('career.career') }}">Career Guide</a>
+                <a href="{{ url_for('resume.resume') }}">Resume Analyzer</a>
+                <a href="{{ url_for('interview.interview_form') }}">Interview Preparation</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('about') }}">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container two-column">
+        <section class="panel">
+            <h2>Career Guide</h2>
+            <form method="post" action="{{ url_for('career.career') }}">
+                <div class="form-grid">
+                    <label>Name<input name="name" value="{{ form.name or '' }}"></label>
+                    <label>Target Job Role<select name="target_role">
+                        <option {% if form.target_role == 'Python Developer' %}selected{% endif %}>Python Developer</option>
+                        <option {% if form.target_role == 'Data Analyst' %}selected{% endif %}>Data Analyst</option>
+                        <option {% if form.target_role == 'Frontend Developer' %}selected{% endif %}>Frontend Developer</option>
+                    </select></label>
+                    <label>Current Skills<input name="current_skills" value="{{ form.current_skills or '' }}"></label>
+                    <label>Available Study Time<select name="available_time">
+                        <option {% if form.available_time == '1 hour/day' %}selected{% endif %}>1 hour/day</option>
+                        <option {% if form.available_time == '2 hours/day' %}selected{% endif %}>2 hours/day</option>
+                        <option {% if form.available_time == '3 hours/day' %}selected{% endif %}>3 hours/day</option>
+                    </select></label>
+                    <label>Education<input name="education" value="{{ form.education or '' }}"></label>
+                    <label>Experience Level<select name="experience_level">
+                        <option {% if form.experience_level == 'Fresher' %}selected{% endif %}>Fresher</option>
+                        <option {% if form.experience_level == 'Junior' %}selected{% endif %}>Junior</option>
+                        <option {% if form.experience_level == 'Mid' %}selected{% endif %}>Mid</option>
+                    </select></label>
+                    <label>Current Projects<input name="projects" value="{{ form.projects or '' }}"></label>
+                    <label>Preferred Learning Mode<select name="preferred_learning_mode">
+                        <option {% if form.preferred_learning_mode == 'Self-paced' %}selected{% endif %}>Self-paced</option>
+                        <option {% if form.preferred_learning_mode == 'Course-based' %}selected{% endif %}>Course-based</option>
+                        <option {% if form.preferred_learning_mode == 'Mentor-guided' %}selected{% endif %}>Mentor-guided</option>
+                    </select></label>
+                </div>
+                <button class="button primary" type="submit">Generate Roadmap</button>
+            </form>
+        </section>
+
+        {% if analysis %}
+        <section class="panel results">
+            <h2>{{ analysis.role }} Roadmap</h2>
+            <p><strong>Name:</strong> {{ form.name or 'User' }}</p>
+            <p><strong>Available time:</strong> {{ analysis.available_time }}</p>
+            <p><strong>Experience:</strong> {{ analysis.experience_level }}</p>
+            <div class="inline-list">
+                <span class="tag success">Existing: {{ analysis.gap.existing|join(', ') }}</span>
+                <span class="tag warning">Partially known: {{ analysis.gap.partially_known|join(', ') }}</span>
+                <span class="tag error">Missing: {{ analysis.gap.missing|join(', ') }}</span>
+            </div>
+
+            <h3>30-Day Roadmap</h3>
+            <ul class="roadmap-list">
+                {% for item in analysis.roadmap[:10] %}
+                <li><strong>Day {{ item.day }}:</strong> {{ item.topic }} — {{ item.objective }} ({{ item.practice_time }})</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Learning Resources</h3>
+            {% for resource in analysis.resources %}
+                <div class="resource-box">
+                    <h4>{{ resource.topic }}</h4>
+                    <ul>
+                        {% for item in resource.resources %}
+                        <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+    </main>
+</body>
+</html>

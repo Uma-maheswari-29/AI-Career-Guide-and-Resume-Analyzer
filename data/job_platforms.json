@@ -1,0 +1,31 @@
+{
+  "Python Developer": {
+    "general": [
+      {"name": "LinkedIn Jobs", "url": "https://www.linkedin.com/jobs/", "purpose": "General job search"},
+      {"name": "Indeed", "url": "https://www.indeed.com/", "purpose": "General job search"}
+    ],
+    "technology": [
+      {"name": "GitHub Jobs", "url": "https://jobs.github.com/", "purpose": "Developer-focused opportunities"},
+      {"name": "Stack Overflow Jobs", "url": "https://stackoverflow.com/jobs", "purpose": "Technical roles"}
+    ],
+    "internships": [
+      {"name": "Internshala", "url": "https://internshala.com/", "purpose": "Internship search"}
+    ]
+  },
+  "Data Analyst": {
+    "general": [
+      {"name": "LinkedIn Jobs", "url": "https://www.linkedin.com/jobs/", "purpose": "General job search"}
+    ],
+    "technology": [
+      {"name": "Kaggle Jobs", "url": "https://www.kaggle.com/", "purpose": "Data science and analytics community"}
+    ]
+  },
+  "Frontend Developer": {
+    "general": [
+      {"name": "LinkedIn Jobs", "url": "https://www.linkedin.com/jobs/", "purpose": "General job search"}
+    ],
+    "technology": [
+      {"name": "CSS-Tricks Jobs", "url": "https://css-tricks.com/jobs/", "purpose": "Design and frontend roles"}
+    ]
+  }
+}

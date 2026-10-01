@@ -1,0 +1,54 @@
+{
+  "Python Developer": {
+    "skills": [
+      "Python",
+      "SQL",
+      "Flask",
+      "REST API",
+      "Git",
+      "Docker",
+      "Testing",
+      "OOP"
+    ],
+    "certifications": [
+      "Python development",
+      "Database technologies",
+      "Cloud fundamentals"
+    ],
+    "summary": "A Python developer should combine programming fundamentals, backend frameworks, databases, and deployment skills."
+  },
+  "Data Analyst": {
+    "skills": [
+      "SQL",
+      "Excel",
+      "Python",
+      "Statistics",
+      "Data Visualization",
+      "Power BI",
+      "ETL"
+    ],
+    "certifications": [
+      "SQL proficiency",
+      "Data analysis fundamentals",
+      "Business intelligence tools"
+    ],
+    "summary": "A data analyst translates data into business insights using analytical tools and storytelling."
+  },
+  "Frontend Developer": {
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Responsive Design",
+      "Git",
+      "Testing"
+    ],
+    "certifications": [
+      "Web development fundamentals",
+      "JavaScript frameworks",
+      "UI/UX basics"
+    ],
+    "summary": "A frontend developer builds accessible interfaces with strong design and JavaScript skills."
+  }
+}

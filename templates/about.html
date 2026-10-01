@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <div class="brand">AI Career Dashboard</div>
+            <nav>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('career.career') }}">Career Guide</a>
+                <a href="{{ url_for('resume.resume') }}">Resume Analyzer</a>
+                <a href="{{ url_for('interview.interview_form') }}">Interview Preparation</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('about') }}">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container panel">
+        <h2>About This Project</h2>
+        <p>This project combines a career roadmap, resume analysis, and interview preparation workflow into a single AI-powered career assistant. It uses structured JSON data for reliable role information and unifies the user experience around a common target role and skill journey.</p>
+        <p>The app follows a hybrid design: fixed job and resource data remain in local JSON files, while Gemini can be used for personalized reasoning when configured. This makes the application easier to maintain and more resilient when AI services are unavailable.</p>
+    </main>
+</body>
+</html>

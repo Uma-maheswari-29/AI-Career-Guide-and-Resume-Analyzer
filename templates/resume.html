@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <div class="brand">AI Career Dashboard</div>
+            <nav>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('career.career') }}">Career Guide</a>
+                <a href="{{ url_for('resume.resume') }}">Resume Analyzer</a>
+                <a href="{{ url_for('interview.interview_form') }}">Interview Preparation</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('about') }}">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container two-column">
+        <section class="panel">
+            <h2>Resume Analyzer</h2>
+            <form method="post" enctype="multipart/form-data" action="{{ url_for('resume.resume') }}">
+                <label>Target Role
+                    <select name="target_role">
+                        <option {% if form.target_role == 'Python Developer' %}selected{% endif %}>Python Developer</option>
+                        <option {% if form.target_role == 'Frontend Developer' %}selected{% endif %}>Frontend Developer</option>
+                        <option {% if form.target_role == 'Data Analyst' %}selected{% endif %}>Data Analyst</option>
+                    </select>
+                </label>
+                <label>Upload Resume (PDF or DOCX)
+                    <input type="file" name="resume" accept=".pdf,.docx">
+                </label>
+                <button class="button primary" type="submit">Analyze Resume</button>
+            </form>
+        </section>
+
+        {% if result %}
+        <section class="panel results">
+            {% if result.error %}
+                <div class="alert error">{{ result.error }}</div>
+            {% else %}
+                <h2>ATS Compatibility Estimate</h2>
+                <div class="score-box">
+                    <h3>Overall: {{ result.ats.overall }}/100</h3>
+                    <p>Keyword Match: {{ result.ats.keyword_match }}%</p>
+                    <p>Skills Match: {{ result.ats.skills_match }}%</p>
+                    <p>Resume Structure: {{ result.ats.resume_structure }}%</p>
+                    <p>Experience Relevance: {{ result.ats.experience_relevance }}%</p>
+                    <p>Project Relevance: {{ result.ats.project_relevance }}%</p>
+                    <p>Education: {{ result.ats.education }}%</p>
+                </div>
+
+                <h3>Matched Skills</h3>
+                <div class="inline-list">
+                    {% for skill in result.matched_skills %}
+                        <span class="tag success">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+
+                <h3>Missing / Recommended Skills</h3>
+                <div class="inline-list">
+                    {% for skill in result.missing_skills %}
+                        <span class="tag warning">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+
+                <h3>Relevant Certifications</h3>
+                <ul>
+                    {% for cert in result.certification_areas %}
+                        <li>{{ cert }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h3>Strengths</h3>
+                <ul>
+                    {% for item in result.strengths %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h3>Areas to Improve</h3>
+                <ul>
+                    {% for item in result.improvements %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </section>
+        {% endif %}
+    </main>
+</body>
+</html>

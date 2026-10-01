@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Preparation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <div class="brand">AI Career Dashboard</div>
+            <nav>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('career.career') }}">Career Guide</a>
+                <a href="{{ url_for('resume.resume') }}">Resume Analyzer</a>
+                <a href="{{ url_for('interview.interview_form') }}">Interview Preparation</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('about') }}">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% if not current_question and not report %}
+        <section class="panel">
+            <h2>AI Interview Preparation</h2>
+            <form method="post" action="{{ url_for('interview.generate') }}">
+                <div class="form-grid">
+                    <label>Company<input name="company" value="ABC Technologies"></label>
+                    <label>Job Role<input name="role" value="Python Developer"></label>
+                    <label>Job Description<textarea name="job_description" rows="4"></textarea></label>
+                    <label>Difficulty<select name="difficulty">
+                        <option>Beginner</option>
+                        <option selected>Intermediate</option>
+                        <option>Advanced</option>
+                    </select></label>
+                    <label>Questions<select name="question_count">
+                        <option>5</option>
+                        <option selected>10</option>
+                    </select></label>
+                </div>
+                <button class="button primary" type="submit">Generate Questions</button>
+            </form>
+        </section>
+        {% endif %}
+
+        {% if current_question %}
+        <section class="panel interview-panel">
+            <h2>AI Interview Preparation</h2>
+            <p><strong>Company:</strong> {{ company }}</p>
+            <p><strong>Role:</strong> {{ role }}</p>
+            <p><strong>Question {{ current_index + 1 }} / {{ total }}</strong></p>
+            <p><strong>Category:</strong> {{ current_question.category }}</p>
+            <p><strong>Difficulty:</strong> {{ current_question.difficulty }}</p>
+            <div class="question-box">
+                <p>{{ current_question.question }}</p>
+            </div>
+            <form method="post" action="{{ url_for('interview.submit_answer') }}">
+                <textarea name="answer" rows="8" placeholder="Type your answer here..."></textarea>
+                <button class="button primary" type="submit">Submit Answer</button>
+            </form>
+            {% if review %}
+            <div class="score-box">
+                <h3>Answer Feedback</h3>
+                <p>Answer Quality: {{ review.score }}/100</p>
+                <p>Correctness: {{ review.correctness }}%</p>
+                <p>Relevance: {{ review.relevance }}%</p>
+                <p>Completeness: {{ review.completeness }}%</p>
+                <p>Clarity: {{ review.clarity }}%</p>
+                <p><strong>Strengths:</strong> {{ review.strengths | join(', ') }}</p>
+                <p><strong>Improve:</strong> {{ review.improvements | join(', ') }}</p>
+            </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        {% if report %}
+        <section class="panel results">
+            <h2>Interview Practice Report</h2>
+            <p><strong>Company:</strong> {{ report.company }}</p>
+            <p><strong>Role:</strong> {{ report.role }}</p>
+            <p><strong>Questions:</strong> {{ report.questions }}</p>
+            <p><strong>Completed:</strong> {{ report.completed }}</p>
+            <p><strong>Average Answer Quality:</strong> {{ report.average_score }}/100</p>
+
+            <h3>Strong Topics</h3>
+            <ul>
+                {% for item in report.strong_topics %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Topics to Practice</h3>
+            <ul>
+                {% for item in report.weak_topics %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Recommended Preparation</h3>
+            <ol>
+                {% for item in report.recommended_preparation %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </section>
+        {% endif %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "Python Developer": [
+    "Python development",
+    "Database technologies",
+    "Cloud fundamentals",
+    "Container basics"
+  ],
+  "Data Analyst": [
+    "SQL proficiency",
+    "Data analysis fundamentals",
+    "Business intelligence tools"
+  ],
+  "Frontend Developer": [
+    "Web development fundamentals",
+    "JavaScript frameworks",
+    "UI/UX basics"
+  ]
+}

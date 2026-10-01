@@ -1,0 +1,27 @@
+{
+  "technical": [
+    "Explain a common design pattern used in backend development.",
+    "How would you debug a Python application that is running slowly?",
+    "What is the difference between a list and a tuple in Python?"
+  ],
+  "project": [
+    "Explain the architecture of your main project.",
+    "What trade-offs did you make in this project and why?",
+    "How would you scale this project for more users?"
+  ],
+  "resume": [
+    "Tell me about the technologies listed on your resume.",
+    "Which part of your resume most directly matches this role?",
+    "How did you use the tools in your project work?"
+  ],
+  "hr": [
+    "Tell me about yourself.",
+    "Why are you interested in this role?",
+    "What are your strongest professional strengths?"
+  ],
+  "behavioral": [
+    "Describe a time you solved a difficult problem.",
+    "Tell me about a challenge you faced during a project.",
+    "How do you handle deadlines and changing requirements?"
+  ]
+}

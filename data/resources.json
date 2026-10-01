@@ -1,0 +1,40 @@
+{
+  "Python Developer": {
+    "Python": [
+      {"name": "Python Documentation", "url": "https://docs.python.org/3/", "description": "Official language reference"},
+      {"name": "W3Schools Python", "url": "https://www.w3schools.com/python/", "description": "Beginner-friendly Python tutorial"}
+    ],
+    "Flask": [
+      {"name": "Flask Documentation", "url": "https://flask.palletsprojects.com/", "description": "Official framework guide"},
+      {"name": "Real Python Flask Tutorial", "url": "https://realpython.com/flask-by-example/", "description": "Practical Flask project walkthrough"}
+    ],
+    "REST API": [
+      {"name": "MDN HTTP Overview", "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview", "description": "HTTP and API fundamentals"},
+      {"name": "REST API Tutorial", "url": "https://restfulapi.net/", "description": "REST principles and examples"}
+    ],
+    "Docker": [
+      {"name": "Docker Documentation", "url": "https://docs.docker.com/", "description": "Official deployment and container reference"},
+      {"name": "Docker Getting Started", "url": "https://docs.docker.com/get-started/", "description": "Hands-on Docker guide"}
+    ],
+    "SQL": [
+      {"name": "SQLBolt", "url": "https://sqlbolt.com/", "description": "SQL practice and concepts"},
+      {"name": "W3Schools SQL", "url": "https://www.w3schools.com/sql/", "description": "SQL syntax and queries"}
+    ]
+  },
+  "Data Analyst": {
+    "SQL": [
+      {"name": "SQLBolt", "url": "https://sqlbolt.com/", "description": "Structured SQL practice"}
+    ],
+    "Python": [
+      {"name": "Python Documentation", "url": "https://docs.python.org/3/", "description": "Official language docs"}
+    ]
+  },
+  "Frontend Developer": {
+    "JavaScript": [
+      {"name": "MDN JavaScript Guide", "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide", "description": "Official JS explanations"}
+    ],
+    "React": [
+      {"name": "React Documentation", "url": "https://react.dev/", "description": "Official React documentation"}
+    ]
+  }
+}
